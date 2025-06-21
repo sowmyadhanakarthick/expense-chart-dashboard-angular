@@ -94,29 +94,35 @@
 /* Chart Dashboard Layout */
 .chart-dashboard {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   padding: 2rem 1rem;
-  width: 100%;
+  background-color: #fafafa;
+  border-radius: 8px;
 }
 
 .chart-card {
-  background: #f9f9f9;
+  background: #fff;
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   text-align: center;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   h3 {
     font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
     margin-bottom: 1rem;
-    color: #333;
   }
 
   apx-chart {
     width: 100%;
+    max-width: 100%;
     height: auto;
+    min-height: 250px;
   }
 }
 
