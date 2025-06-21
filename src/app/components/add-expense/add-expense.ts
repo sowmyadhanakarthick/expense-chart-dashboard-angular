@@ -41,7 +41,7 @@ export class AddExpense {
     this.form = this.fb.group({
       title: ['', Validators.required],
       amount: [null, [Validators.required, Validators.min(1)]],
-      category: ['', Validators.required],
+      category: [null, Validators.required],
       date: ['', Validators.required],
     });
   }
@@ -85,7 +85,7 @@ export class AddExpense {
       this.form.reset({
         title: '',
         amount: null,
-        category: '',
+        category: null,
         date: '',
       });
     }

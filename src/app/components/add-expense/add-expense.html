@@ -1,67 +1,75 @@
 <div class="content">
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
-    <input
-      type="text"
-      placeholder="Title"
-      class="input"
-      formControlName="title"
-      aria-describedby="titleError"
-    />
-    <div
-      *ngIf="form.get('title')?.invalid && form.get('title')?.touched"
-      id="titleError"
-      class="error"
-    >
-      Title is required
+    <div class="form-field">
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        required
+        placeholder=" "
+        autocomplete="off"
+      />
+      <label for="title" class="floating-label">Title</label>
+      <div
+        class="error"
+        *ngIf="form.get('title')?.invalid && form.get('title')?.touched"
+      >
+        Title is required
+      </div>
     </div>
 
-    <input
-      type="number"
-      placeholder="Amount"
-      class="input"
-      formControlName="amount"
-      aria-describedby="amountError"
-    />
-    <div
-      *ngIf="form.get('amount')?.invalid && form.get('amount')?.touched"
-      id="amountError"
-      class="error"
-    >
-      Amount is required
+    <div class="form-field">
+      <input
+        type="number"
+        id="amount"
+        formControlName="amount"
+        required
+        placeholder=" "
+        autocomplete="off"
+      />
+      <label for="amount" class="floating-label">Amount</label>
+      <div
+        class="error"
+        *ngIf="form.get('amount')?.invalid && form.get('amount')?.touched"
+      >
+        Amount is required
+      </div>
     </div>
 
-    <select
-      class="input"
-      formControlName="category"
-      aria-describedby="categoryError"
-    >
-      <option [ngValue]="''" disabled>Select Category</option>
-      <option value="Food">Food</option>
-      <option value="Travel">Travel</option>
-      <option value="Utilities">Utilities</option>
-      <option value="Others">Others</option>
-    </select>
-    <div
-      *ngIf="form.get('category')?.invalid && form.get('category')?.touched"
-      id="categoryError"
-      class="error"
-    >
-      Category is required
+    <div class="form-field">
+      <select id="category" formControlName="category" required>
+        <option [ngValue]="''" disabled>Select Category</option>
+        <option value="Food">Food</option>
+        <option value="Travel">Travel</option>
+        <option value="Utilities">Utilities</option>
+        <option value="Others">Others</option>
+      </select>
+      <label for="category" class="floating-label">Category</label>
+      <div
+        class="error"
+        *ngIf="form.get('category')?.invalid && form.get('category')?.touched"
+      >
+        Category is required
+      </div>
     </div>
 
-    <input
-      type="date"
-      class="input"
-      [max]="maxDate"
-      formControlName="date"
-      aria-describedby="dateError"
-    />
-    <div
-      *ngIf="form.get('date')?.invalid && form.get('date')?.touched"
-      id="dateError"
-      class="error"
-    >
-      Date is required
+    <div class="form-field">
+      <input
+        type="date"
+        id="date"
+        formControlName="date"
+        [max]="maxDate"
+        required
+        placeholder=" "
+        autocomplete="off"
+      />
+      <label for="date" class="floating-label">Date</label>
+      <div
+        class="error"
+        *ngIf="form.get('date')?.invalid && form.get('date')?.touched"
+      >
+        Date is required
+      </div>
     </div>
 
     <button
