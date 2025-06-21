@@ -1,4 +1,9 @@
-<div *ngIf="chartOptions?.series?.length">
+<div
+  class="chart-container"
+  tabindex="0"
+  role="img"
+  aria-label="Expense Data Analysis Charts: Category-wise and Monthly Trends"
+>
   <apx-chart
     [series]="chartOptions.series || []"
     [chart]="chartOptions.chart!"
@@ -8,8 +13,4 @@
     [legend]="chartOptions.legend!"
     [responsive]="chartOptions.responsive || []"
   ></apx-chart>
-</div>
-
-<div *ngIf="!chartOptions?.series?.length" class="no-data">
-  📊 No expense data available to display the chart.
 </div>
