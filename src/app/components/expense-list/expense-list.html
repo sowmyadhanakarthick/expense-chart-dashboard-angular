@@ -1,0 +1,104 @@
+<h2 class="heading">Expense List</h2>
+<div *ngIf="expenses().length === 0">
+  <p class="description-when-empty">
+    A list of all recorded expenses with title, amount, category, and date.
+  </p>
+</div>
+<div class="top-bar" *ngIf="expenses().length">
+  <p class="description">
+    A list of all recorded expenses with title, amount, category, and date.
+  </p>
+
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Search by title or category..."
+    [(ngModel)]="searchTerm"
+    aria-label="Search expenses"
+  />
+</div>
+
+<div class="expense-container">
+  <div class="expense-container">
+    <div
+      class="table-wrapper"
+      role="region"
+      aria-label="Expense table"
+      tabindex="0"
+      *ngIf="filteredExpenses().length > 0"
+    >
+      <table class="expense-table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Amount (₹)</th>
+            <th scope="col">Category</th>
+            <th scope="col">Date</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let expense of filteredExpenses()">
+            <td>{{ expense.title }}</td>
+            <td>₹{{ expense.amount.toFixed(2) }}</td>
+            <td>{{ expense.category }}</td>
+            <td>{{ expense.date | date: 'mediumDate' }}</td>
+            <td>
+              <button class="action-btn edit" (click)="editExpense(expense)">
+                Edit
+              </button>
+              <button
+                class="action-btn delete"
+                (click)="deleteExpense(expense.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- No data fallback -->
+    <div *ngIf="expenses().length === 0" class="no-data-wrapper">
+      <p class="no-data">No expenses recorded yet.</p>
+      <button class="add-btn" routerLink="/">Add Your First Expense</button>
+    </div>
+    <div
+      *ngIf="filteredExpenses().length === 0 && expenses().length > 0"
+      class="no-data"
+    >
+      No matching expenses found for your search.
+    </div>
+
+    <!-- Chart Section -->
+    <section class="chart-dashboard" *ngIf="expenses().length">
+      <div class="chart-card">
+        <h3>Spending Distribution by Category (%)</h3>
+        <app-expense-chart [chartType]="'pie'" [expenses]="expenses()" />
+      </div>
+
+      <div class="chart-card">
+        <h3>Monthly Spending Breakdown by Category (₹)</h3>
+        <app-expense-chart [chartType]="'bar'" [expenses]="expenses()" />
+      </div>
+
+      <div class="chart-card">
+        <h3>Monthly Spending Trend</h3>
+        <app-expense-chart [chartType]="'line'" [expenses]="expenses()" />
+      </div>
+    </section>
+  </div>
+  <!-- Edit Expense Modal to update expense -->
+  <div class="modal" *ngIf="isEditModalOpen">
+    <div class="modal-content">
+      <button class="close-btn" (click)="closeModal()">×</button>
+      <h2 class="modal-title">Edit Expense</h2>
+
+      <app-add-expense
+        [expenseToEdit]="selectedExpense"
+        (expenseUpdated)="handleUpdatedExpense($event)"
+      ></app-add-expense>
+    </div>
+  </div>
+</div>

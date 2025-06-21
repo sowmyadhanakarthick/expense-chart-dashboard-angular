@@ -1,0 +1,80 @@
+<div class="content">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <input
+      type="text"
+      placeholder="Title"
+      class="input"
+      formControlName="title"
+      aria-describedby="titleError"
+    />
+    <div
+      *ngIf="form.get('title')?.invalid && form.get('title')?.touched"
+      id="titleError"
+      class="error"
+    >
+      Title is required
+    </div>
+
+    <input
+      type="number"
+      placeholder="Amount"
+      class="input"
+      formControlName="amount"
+      aria-describedby="amountError"
+    />
+    <div
+      *ngIf="form.get('amount')?.invalid && form.get('amount')?.touched"
+      id="amountError"
+      class="error"
+    >
+      Amount is required
+    </div>
+
+    <select
+      class="input"
+      formControlName="category"
+      aria-describedby="categoryError"
+    >
+      <option [ngValue]="''" disabled>Select Category</option>
+      <option value="Food">Food</option>
+      <option value="Travel">Travel</option>
+      <option value="Utilities">Utilities</option>
+      <option value="Others">Others</option>
+    </select>
+    <div
+      *ngIf="form.get('category')?.invalid && form.get('category')?.touched"
+      id="categoryError"
+      class="error"
+    >
+      Category is required
+    </div>
+
+    <input
+      type="date"
+      class="input"
+      [max]="maxDate"
+      formControlName="date"
+      aria-describedby="dateError"
+    />
+    <div
+      *ngIf="form.get('date')?.invalid && form.get('date')?.touched"
+      id="dateError"
+      class="error"
+    >
+      Date is required
+    </div>
+
+    <button
+      type="submit"
+      class="btn"
+      [disabled]="form.invalid"
+      [attr.aria-disabled]="form.invalid"
+    >
+      {{ isEditMode ? 'Update Expense' : 'Add Expense' }}
+    </button>
+
+    <p *ngIf="form.invalid" class="form-hint">
+      🛈 Please fill all required fields to enable the button.
+    </p>
+  </form>
+</div>
