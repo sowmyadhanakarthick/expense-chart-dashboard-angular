@@ -7,10 +7,18 @@ import { ExpenseChart } from '../expense-chart/expense-chart';
 import { AddExpense } from '../add-expense/add-expense';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { DashboardSummary } from '../dashboard-summary/dashboard-summary';
 
 @Component({
   selector: 'app-expense-list',
-  imports: [CommonModule, ExpenseChart, AddExpense, FormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    ExpenseChart,
+    AddExpense,
+    FormsModule,
+    RouterModule,
+    DashboardSummary,
+  ],
   templateUrl: './expense-list.html',
   styleUrl: './expense-list.scss',
 })
@@ -63,4 +71,8 @@ export class ExpenseList {
         exp.category.toLowerCase().includes(term)
     );
   });
+
+  loadSampleData() {
+    this.expenseService.setMockData();
+  }
 }

@@ -1,15 +1,25 @@
-<h2 class="heading">Expense List</h2>
+<h2 class="heading" id="expense-list-heading">Expense Dashboard</h2>
 
-<div *ngIf="expenses().length === 0">
-  <p class="description-when-empty">
-    A list of all recorded expenses with title, amount, category, and date.
-  </p>
+<div
+  class="no-data-wrapper"
+  *ngIf="expenses().length === 0"
+  role="region"
+  aria-labelledby="expense-list-heading"
+>
+  <div>
+    <p class="no-data">No expenses recorded yet.</p>
+    <button class="add-btn" (click)="loadSampleData()">Load Sample Data</button>
+    <button class="add-btn" routerLink="/">Add Your First Expense</button>
+  </div>
 </div>
+
 <div class="top-bar" *ngIf="expenses().length">
   <p class="description">
     A list of all recorded expenses with title, amount, category, and date.
   </p>
+  <label for="expenseSearch" class="visually-hidden">Search Expenses</label>
   <input
+    id="expenseSearch"
     type="text"
     class="search-input"
     placeholder="Search by title or category..."
@@ -18,13 +28,25 @@
   />
 </div>
 
-<div class="expense-container">
+<div
+  *ngIf="filteredExpenses().length === 0 && expenses().length > 0"
+  class="no-data"
+  role="alert"
+>
+  No matching expenses found for your search.
+</div>
+
+<div
+  class="expense-container grid-section"
+  *ngIf="filteredExpenses().length > 0"
+>
+  <h3 class="section-heading" id="dashboard-summary-heading">Expense List</h3>
+
   <div
     class="table-wrapper"
     role="region"
     aria-label="Expense table with title, amount, category, and date"
     tabindex="0"
-    *ngIf="filteredExpenses().length > 0"
   >
     <table class="expense-table">
       <thead>
@@ -43,12 +65,17 @@
           <td>{{ expense.category }}</td>
           <td>{{ expense.date | date: 'mediumDate' }}</td>
           <td>
-            <button class="action-btn edit" (click)="editExpense(expense)">
+            <button
+              class="action-btn edit"
+              (click)="editExpense(expense)"
+              [attr.aria-label]="'Edit ' + expense.title + ' expense'"
+            >
               Edit
             </button>
             <button
               class="action-btn delete"
               (click)="deleteExpense(expense.id)"
+              [attr.aria-label]="'Delete ' + expense.title + ' expense'"
             >
               Delete
             </button>
@@ -57,20 +84,23 @@
       </tbody>
     </table>
   </div>
+</div>
+<div class="grid-section" *ngIf="filteredExpenses().length > 0">
+  <h3 class="section-heading" id="dashboard-summary-heading">
+    Monthly Summary
+  </h3>
+  <app-dashboard-summary
+    [expenses]="filteredExpenses()"
+  ></app-dashboard-summary>
+</div>
 
-  <div *ngIf="expenses().length === 0" class="no-data-wrapper">
-    <p class="no-data">No expenses recorded yet.</p>
-    <button class="add-btn" routerLink="/">Add Your First Expense</button>
-  </div>
-
-  <div
-    *ngIf="filteredExpenses().length === 0 && expenses().length > 0"
-    class="no-data"
+<div class="grid-section" *ngIf="expenses().length">
+  <h3 class="section-heading" id="dashboard-summary-heading">Expense Charts</h3>
+  <section
+    class="chart-dashboard"
+    *ngIf="expenses().length"
+    aria-labelledby="charts-heading"
   >
-    No matching expenses found for your search.
-  </div>
-
-  <section class="chart-dashboard" *ngIf="expenses().length">
     <div class="chart-card">
       <h3>Spending Distribution by Category (%)</h3>
       <app-expense-chart
@@ -95,26 +125,27 @@
       ></app-expense-chart>
     </div>
   </section>
+</div>
 
-  <div class="modal" *ngIf="isEditModalOpen">
-    <div
-      class="modal-content"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
+<div
+  class="modal"
+  *ngIf="isEditModalOpen"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+>
+  <div class="modal-content">
+    <button
+      class="close-btn"
+      (click)="closeModal()"
+      aria-label="Close edit modal"
     >
-      <button
-        class="close-btn"
-        (click)="closeModal()"
-        aria-label="Close edit modal"
-      >
-        ×
-      </button>
-      <h2 id="modal-title" class="modal-title">Edit Expense</h2>
-      <app-add-expense
-        [expenseToEdit]="selectedExpense"
-        (expenseUpdated)="handleUpdatedExpense($event)"
-      ></app-add-expense>
-    </div>
+      ×
+    </button>
+    <h2 id="modal-title" class="modal-title">Edit Expense</h2>
+    <app-add-expense
+      [expenseToEdit]="selectedExpense"
+      (expenseUpdated)="handleUpdatedExpense($event)"
+    ></app-add-expense>
   </div>
 </div>

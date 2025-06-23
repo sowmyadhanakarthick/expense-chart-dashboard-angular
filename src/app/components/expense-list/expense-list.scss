@@ -8,54 +8,47 @@
 .expense-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
 .table-wrapper {
   max-height: 300px;
   overflow: auto;
   border-radius: 10px;
-  background-color: #fff;
   padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  background-color: #fafafa;
+  border-radius: 10px;
 }
 
 .expense-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-
-  th,
-  td {
-    padding: 0.75rem 1rem;
-    text-align: left;
-  }
 
   thead {
-    background-color: #f5f5f5;
-    font-weight: bold;
-    color: #333;
+    background-color: #f3f6f9;
 
     th {
-      position: sticky;
-      top: 0;
-      background: #f5f5f5;
-      z-index: 1;
+      color: #2c3e50;
+      font-weight: 600;
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
     }
   }
 
   tbody tr {
-    border-top: 1px solid #eee;
-    transition: background 0.3s ease;
-
-    &:hover {
-      background-color: #f9f9f9;
-    }
+    background-color: #ffffff;
 
     &:nth-child(even) {
-      background-color: #fcfcfc;
+      background-color: #f0f7ff;
+    }
+
+    &:hover {
+      background-color: #e3f2fd;
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e0e0e0;
     }
   }
 }
@@ -95,8 +88,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  padding: 2rem 1rem;
-  background-color: #fafafa;
   border-radius: 8px;
 }
 
@@ -247,9 +238,17 @@
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    margin: 0 14px;
 
     &:hover {
       background-color: #0056b3;
     }
   }
+}
+
+.grid-section {
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: 10px;
+  margin-top: 1rem;
 }
