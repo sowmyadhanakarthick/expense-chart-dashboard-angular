@@ -36,7 +36,7 @@ export class ExpenseList {
     const confirmed = confirm('Are you sure you want to delete this expense?');
     if (confirmed) {
       this.expenseService.deleteExpense(id);
-      this.toastService.show('🗑️ Expense deleted successfully'); // ✅ Toast shown
+      this.toastService.show('Expense deleted successfully');
     }
   }
 

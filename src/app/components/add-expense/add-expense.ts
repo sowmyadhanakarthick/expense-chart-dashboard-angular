@@ -76,10 +76,10 @@ export class AddExpense {
           ...this.expenseToEdit,
           ...formValue,
         });
-        this.toastService.show('✅ Expense updated successfully');
+        this.toastService.show('Expense updated successfully');
       } else {
         this.expenseService.addExpense(formValue);
-        this.toastService.show('✅ Expense added successfully');
+        this.toastService.show('Expense added successfully');
       }
 
       this.form.reset({

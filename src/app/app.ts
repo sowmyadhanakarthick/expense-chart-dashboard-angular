@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet, RouterModule } from '@angular/router';
-import { Toast } from '../app/components/toast/toast'; // ✅ if using toast component
+import { Toast } from '../app/components/toast/toast';
 
 @Component({
   selector: 'app-root',

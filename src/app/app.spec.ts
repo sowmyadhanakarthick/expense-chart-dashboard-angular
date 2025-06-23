@@ -1,23 +1,27 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { Toast } from '../app/components/toast/toast';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('App', () => {
+describe('App Component', () => {
+  let component: App;
+  let fixture: ComponentFixture<App>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App],
+      imports: [App, Toast, RouterTestingModule],
     }).compileComponents();
-  });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(App);
+    fixture = TestBed.createComponent(App);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, expense-chart-dashboard-angular');
+  });
+
+  it('should create the App component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have the correct title', () => {
+    expect(component['title']).toBe('expense-chart-dashboard-angular');
   });
 });
