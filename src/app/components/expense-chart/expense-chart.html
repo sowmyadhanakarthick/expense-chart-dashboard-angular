@@ -5,6 +5,7 @@
   aria-label="Expense Data Analysis Charts: Category-wise and Monthly Trends"
 >
   <apx-chart
+    #chartRef
     [series]="chartOptions.series || []"
     [chart]="chartOptions.chart!"
     [labels]="chartOptions.labels || []"

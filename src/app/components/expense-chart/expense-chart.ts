@@ -17,7 +17,6 @@ import { Expense } from '../../models/expense.model';
 
 @Component({
   selector: 'app-expense-chart',
-  standalone: true,
   imports: [CommonModule, NgApexchartsModule],
   templateUrl: './expense-chart.html',
   styleUrl: './expense-chart.scss',

@@ -33,6 +33,29 @@ export type ChartOptions = {
   yaxis?: ApexYAxis;
 };
 
+// Common method for export toolbar
+const createExportToolbar = (
+  filename: string,
+  headerCategory: string,
+  headerValue: string,
+  customFormatter?: (opts: any) => string
+) => ({
+  show: true,
+  tools: {
+    download: true,
+  },
+  export: {
+    csv: {
+      filename,
+      headerCategory,
+      headerValue,
+      columnDelimiter: ',',
+      lineDelimiter: '\n',
+      ...(customFormatter && { formatter: customFormatter }),
+    },
+  },
+});
+
 export const pieChartConfig = (
   labels: string[],
   values: number[]
@@ -42,6 +65,7 @@ export const pieChartConfig = (
     type: 'pie',
     width: '100%',
     height: 300,
+    toolbar: createExportToolbar('pie-chart-data', 'Category', 'Amount (₹)'),
   },
   labels,
   legend: {
@@ -64,7 +88,12 @@ export const lineChartConfig = (
   data: number[]
 ): Partial<ChartOptions> => ({
   series: [{ name: 'Expenses', data }],
-  chart: { type: 'line', width: '100%', height: 350 },
+  chart: {
+    type: 'line',
+    width: '100%',
+    height: 350,
+    toolbar: createExportToolbar('line-chart-data', 'Month', 'Amount (₹)'),
+  },
   xaxis: { categories: labels },
   legend: { position: 'top', fontSize: '14px' },
   responsive: [
@@ -152,12 +181,29 @@ export function getStackedMonthlyBreakdownData(
     })
   );
 
+  const csvFormatter = (opts: any): string => {
+    const rows = [`Month,Category,Amount (₹)`];
+    labels.forEach((label: string, i: number) => {
+      opts.config.series.forEach((s: any) => {
+        const value = s.data[i] || 0;
+        rows.push(`${label},${s.name},${value}`);
+      });
+    });
+    return rows.join('\n');
+  };
+
   return {
     series,
     chart: {
       type: 'bar',
       stacked: true,
       height: 350,
+      toolbar: createExportToolbar(
+        'bar-chart-data',
+        'Month',
+        'Amount (₹)',
+        csvFormatter
+      ),
     },
     xaxis: {
       categories: labels,
