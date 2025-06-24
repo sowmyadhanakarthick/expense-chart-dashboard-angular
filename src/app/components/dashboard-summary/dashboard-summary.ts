@@ -47,9 +47,9 @@ export class DashboardSummary implements OnChanges {
       0
     );
     this.totalTransactions = currentMonthExpenses.length;
-    this.highestExpense = Math.max(
-      ...currentMonthExpenses.map((e) => e.amount)
-    );
+    this.highestExpense = currentMonthExpenses.length
+      ? Math.max(...currentMonthExpenses.map((e) => e.amount))
+      : 0;
 
     const categoryTotals: Record<string, number> = {};
     currentMonthExpenses.forEach((exp) => {

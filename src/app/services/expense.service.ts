@@ -32,32 +32,25 @@ export class ExpenseService {
   }
 
   setMockData() {
+    const today = new Date().toISOString().split('T')[0];
+
     const mock: Omit<Expense, 'id'>[] = [
       {
         title: 'Groceries',
         amount: 1200,
         category: 'Food',
-        date: '05-10-2025',
+        date: '2025-10-05',
       },
-      {
-        title: 'Metro Pass',
-        amount: 600,
-        category: 'Travel',
-        date: new Date().toISOString(),
-      },
-      {
-        title: 'Dinner Out',
-        amount: 800,
-        category: 'Food',
-        date: new Date().toISOString(),
-      },
+      { title: 'Metro Pass', amount: 600, category: 'Travel', date: today },
+      { title: 'Dinner Out', amount: 800, category: 'Food', date: today },
       {
         title: 'Electricity Bill',
         amount: 1600,
         category: 'Utilities',
-        date: new Date().toISOString(),
+        date: today,
       },
     ];
-    mock.forEach((exp) => this.addExpense(exp));
+
+    mock.forEach(this.addExpense.bind(this));
   }
 }

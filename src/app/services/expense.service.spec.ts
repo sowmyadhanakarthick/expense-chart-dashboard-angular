@@ -113,4 +113,43 @@ describe('ExpenseService', () => {
 
     expect(service.expenses()).toEqual(original);
   });
+
+  it('should call addExpense 4 times with correct mock data', () => {
+    spyOn(service, 'addExpense').and.callThrough();
+
+    service.setMockData();
+
+    expect(service.addExpense).toHaveBeenCalledTimes(4);
+
+    const [exp1, exp2, exp3, exp4] = (service.addExpense as jasmine.Spy).calls
+      .allArgs()
+      .map((args) => args[0]);
+
+    expect(exp1).toEqual(
+      jasmine.objectContaining({
+        title: 'Groceries',
+        amount: 1200,
+        category: 'Food',
+        date: '2025-10-05',
+      })
+    );
+
+    expect(exp2.title).toBe('Metro Pass');
+    expect(exp3.title).toBe('Dinner Out');
+    expect(exp4.title).toBe('Electricity Bill');
+
+    const today = new Date().toISOString().split('T')[0];
+    expect(exp2.date).toBe(today);
+    expect(exp3.date).toBe(today);
+    expect(exp4.date).toBe(today);
+  });
+
+  it('should store the expenses after setMockData is called', () => {
+    service.setMockData();
+    const allExpenses = service.expenses();
+
+    expect(allExpenses.length).toBe(4);
+    expect(allExpenses.some((e) => e.title === 'Groceries')).toBeTrue();
+    expect(allExpenses.some((e) => e.title === 'Metro Pass')).toBeTrue();
+  });
 });
