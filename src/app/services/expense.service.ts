@@ -39,7 +39,7 @@ export class ExpenseService {
         title: 'Groceries',
         amount: 1200,
         category: 'Food',
-        date: '2025-10-05',
+        date: '2025-05-10',
       },
       { title: 'Metro Pass', amount: 600, category: 'Travel', date: today },
       { title: 'Dinner Out', amount: 800, category: 'Food', date: today },
