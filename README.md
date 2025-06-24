@@ -53,14 +53,15 @@ A responsive, accessible expense tracker built with Angular 20, TypeScript, and 
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
-- **Framework**: Angular 20 (standalone components)  
-- **Language**: TypeScript  
-- **State**: Angular Signals  
-- **Charts**: ng-apexcharts (ApexCharts)  
-- **Testing**: Jasmine, Karma  
-- **Styles**: SCSS  
+| Tech             | Description                     |
+|------------------|---------------------------------|
+| Angular 20       | Frontend framework              |
+| Angular Signals  | Reactive state management       |
+| ng-apexcharts    | Charting library for data visualization   |
+| SCSS             | Component-based styling         |
+| Jasmine & Karma  | Unit testing framework          |
 
 ---
 
