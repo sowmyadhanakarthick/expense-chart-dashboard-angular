@@ -131,6 +131,7 @@ ng test
 | Feature                             | Description                                                                |
 |-------------------------------------|----------------------------------------------------------------------------|
 | Sorting & Advanced Filters          | Enable sorting by amount, date, category, and apply combined filters       |
+| Budget & Wallet Tracking            | Allow users to set initial income or available funds (e.g., cash and bank balance). While adding an expense, users can specify the payment method (Cash/Online). Automatically update and display remaining balances for both categories in real time.       |
 | Dark/Light Theme Toggle             | Provide theme switching for accessibility and user preference              |
 | End-to-End Testing (Playwright)     | Automate full user journeys and ensure accessibility with Playwright       |
 | Internationalization (i18n)         | Support multiple languages using Angular’s i18n module                     |
