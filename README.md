@@ -1,8 +1,16 @@
 # Expense Chart Dashboard Angular
 
-A responsive, accessible expense tracker built with **Angular 20**, **TypeScript**, and **Signals** for state management. Features include adding, editing, and deleting expenses, live search and filtering, dashboard summary cards, and interactive charts (pie, bar, line) with export options. The expense-list view is **lazy-loaded** on demand for performance optimization. Accessibility is implemented following **WCAG-compliant** best practices.
+A responsive, **WCAG-compliant** expense tracker built with **Angular 20**, **TypeScript**, and **Signals**. It features CRUD operations, live search, dashboard summary cards, interactive charts with export options (PNG/SVG/CSV), and **lazy-loaded** views for optimized performance.
 
 ---
+
+## Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Demo and Screenshots](#demo-and-screenshots)
+- [Getting Started](#getting-started-local-setup)
+- [Planned Enhancements](#planned-enhancements)
 
 ## Features
 
@@ -47,7 +55,8 @@ A responsive, accessible expense tracker built with **Angular 20**, **TypeScript
    - `/list` route loaded on demand
 
 10. **Unit Testing**  
-    - Jasmine + Karma coverage for components and services
+    - Jasmine + Karma tests for components and services
+    - **90%+ code coverage** (viewable via /coverage/index.html after running ng test --code-coverage)
 
 ---
 
@@ -116,3 +125,19 @@ http://localhost:4200
 ```bash
 ng test
 ```
+
+## Planned Enhancements
+
+| Feature                             | Description                                                                |
+|-------------------------------------|----------------------------------------------------------------------------|
+| Sorting & Advanced Filters          | Enable sorting by amount, date, category, and apply combined filters       |
+| Dark/Light Theme Toggle             | Provide theme switching for accessibility and user preference              |
+| End-to-End Testing (Playwright)     | Automate full user journeys and ensure accessibility with Playwright       |
+| Internationalization (i18n)         | Support multiple languages using Angular’s i18n module                     |
+| Accessibility Audits (axe-core)     | Integrate WCAG compliance testing into development workflow                |
+| Backend Integration                 | Using REST API and Firebase for persistent storage                         |
+| Authentication                      | Enable user login and personalized dashboards                              |
+| Pagination / Infinite Scroll        | Improve performance for large datasets with lazy loading or paging         |
+| PWA Support                         | Make the app installable with offline access via Angular PWA               |
+
+---
