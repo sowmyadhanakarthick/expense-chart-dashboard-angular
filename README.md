@@ -1,7 +1,6 @@
 # Expense Chart Dashboard Angular
 
-A responsive, accessible expense tracker built with Angular 20, TypeScript, and Signals for state management. Features include adding, editing, deleting expenses, search and filtering, dashboard summary cards, and interactive charts (pie, bar, line) with export options. The expense‐list view is lazy-loaded on demand, ensuring a performant initial bundle.
-
+A responsive, accessible expense tracker built with **Angular 20**, **TypeScript**, and **Signals** for state management. Features include adding, editing, and deleting expenses, live search and filtering, dashboard summary cards, and interactive charts (pie, bar, line) with export options. The expense-list view is **lazy-loaded** on demand for performance optimization. Accessibility is implemented following **WCAG-compliant** best practices.
 
 ---
 
@@ -32,7 +31,7 @@ A responsive, accessible expense tracker built with Angular 20, TypeScript, and 
    - ApexCharts integration  
    - Export as PNG, SVG, or CSV (custom headers/formats)
 
-6. **Accessibility (WCAG 2.1)**  
+6. **Accessibility (WCAG compliant)**  
    - Semantic HTML & ARIA attributes  
    - Keyboard navigation support  
 
@@ -45,8 +44,7 @@ A responsive, accessible expense tracker built with Angular 20, TypeScript, and 
    - Computed totals and filtering
 
 9. **Lazy Loading**  
-   - `/list` route loaded on demand  
-   - Smaller initial bundle
+   - `/list` route loaded on demand
 
 10. **Unit Testing**  
     - Jasmine + Karma coverage for components and services
